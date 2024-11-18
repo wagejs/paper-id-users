@@ -1,12 +1,13 @@
-<td class="border border-gray-200 px-4 py-2">#{{ id }}</td>
-<td class="border border-gray-200 px-4 py-2">{{ name }}</td>
-<td class="border border-gray-200 px-4 py-2">{{ email }}</td>
-<td class="border border-gray-200 px-4 py-2">
+<td class="border border-gray-200 px-4 py-2" data-test-id="user-id-column">#{{ id }}</td>
+<td class="border border-gray-200 px-4 py-2" data-test-id="user-name-column">{{ name }}</td>
+<td class="border border-gray-200 px-4 py-2" data-test-id="user-email-column">{{ email }}</td>
+<td class="border border-gray-200 px-4 py-2" data-test-id="user-website-column">
   {{ website }}
 </td>
-<td class="border border-gray-200 px-4 py-2">
+<td class="border border-gray-200 px-4 py-2" data-test-id="user-actions-column">
   <button 
-    class="rounded bg-blue-500 px-3 py-1 text-white hover:bg-blue-600" 
+    class="rounded bg-blue-500 px-3 py-1 text-white hover:bg-blue-600"
+    data-test-id="user-details-button"
     (click)="navigateToUserDetails()">
     Detail
   </button>

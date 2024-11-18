@@ -1,8 +1,8 @@
 <div class="max-w-3xl mx-auto p-6">
   <div class="bg-white rounded-lg shadow-lg p-8">
     <div class="flex items-center justify-between mb-6 border-b pb-4">
-      <h2 class="text-2xl font-bold text-gray-800">User Details</h2>
-      <button (click)="goBack()" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-800 flex items-center gap-2 transition-colors">
+      <h2 class="text-2xl font-bold text-gray-800" data-testid="user-details-title">User Details</h2>
+      <button data-testid="back-button" (click)="goBack()" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-800 flex items-center gap-2 transition-colors">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
           <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
         </svg>
@@ -11,24 +11,24 @@
     </div>
     
     @if (isLoading) {
-      <div class="flex flex-col justify-center items-center h-48 space-y-4">
+      <div class="flex flex-col justify-center items-center h-48 space-y-4" data-testid="loading-spinner">
         <div class="w-12 h-12 border-4 border-gray-200 border-t-blue-500 rounded-full animate-spin"></div>
         <p class="text-gray-600 font-medium animate-pulse">Loading user details...</p>
       </div>
     }
     @else {
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8" data-testid="user-details-content">
         <!-- Personal Information -->
-        <div class="space-y-4">
+        <div class="space-y-4" data-testid="personal-info-section">
           <h3 class="text-lg font-semibold text-gray-700 mb-3">Personal Information</h3>
           <div class="space-y-3">
           <p class="flex items-center">
             <span class="text-gray-600 w-24">Name:</span>
-            <span class="text-gray-800 font-medium">{{ user?.name }}</span>
+            <span class="text-gray-800 font-medium" data-testid="user-name">{{ user?.name }}</span>
           </p>
           <p class="flex items-center">
             <span class="text-gray-600 w-24">Username:</span>
-            <span class="text-gray-800 font-medium">{{ user?.username }}</span>
+            <span class="text-gray-800 font-medium" data-testid="user-username">{{ user?.username }}</span>
           </p>
           <p class="flex items-center">
             <span class="text-gray-600 w-24">Email:</span>
@@ -50,7 +50,7 @@
         </div>
 
         <!-- Address Information -->
-      <div class="bg-gray-50 rounded-lg p-6">
+      <div class="bg-gray-50 rounded-lg p-6" data-testid="address-section">
         <h3 class="text-lg font-semibold text-gray-700 mb-4">Address</h3>
         <div class="space-y-3">
           <p class="flex items-center">
@@ -87,7 +87,7 @@
       </div>
 
       <!-- Company Information -->
-      <div class="md:col-span-2 bg-gray-50 rounded-lg p-6 mt-4">
+      <div class="md:col-span-2 bg-gray-50 rounded-lg p-6 mt-4" data-testid="company-section">
         <h3 class="text-lg font-semibold text-gray-700 mb-4">Company</h3>
         <div class="space-y-3">
           <p class="flex items-center">

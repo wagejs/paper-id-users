@@ -1,18 +1,18 @@
-<div class="overflow-x-auto">
-  <table class="min-w-full border-collapse border rounded-lg border-gray-200 bg-white text-sm shadow-md">
+<div class="overflow-x-auto" data-test-id="user-list-container">
+  <table class="min-w-full border-collapse border rounded-lg border-gray-200 bg-white text-sm shadow-md" data-test-id="user-list-table">
     <thead class="bg-gray-100">
-      <tr>
+      <tr data-test-id="user-list-header-row">
         @for (header of headers; track $index) {
-          <th class="border border-gray-200 px-4 py-2 text-left font-medium text-gray-600">
+          <th class="border border-gray-200 px-4 py-2 text-left font-medium text-gray-600" [attr.data-test-id]="'user-list-header-' + header.toLowerCase()">
             {{ header }}
           </th>
         }
       </tr>
     </thead>
     @if (users.length) {
-      <tbody>
+      <tbody data-test-id="user-list-body">
         @for (user of users; track user.id) {
-          <tr>
+          <tr [attr.data-test-id]="'user-list-row-' + user.id">
             <user-list-row-component
               [id]="user.id.toString()" 
               [name]="user.name" 
