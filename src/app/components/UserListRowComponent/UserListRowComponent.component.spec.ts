@@ -54,4 +54,9 @@ describe('UserListRowComponent', () => {
     
     expect(routerSpy.navigate).toHaveBeenCalledWith(['/user', component.id]);
   });
+
+  it('should display email as a link', () => {
+    const emailElement = fixture.nativeElement.querySelector('[data-test-id="user-email-column"]');
+    expect(emailElement.querySelector('a')).toBeTruthy();
+  });
 });

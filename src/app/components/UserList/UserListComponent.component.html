@@ -1,9 +1,9 @@
 <div class="overflow-x-auto" data-test-id="user-list-container">
-  <table class="min-w-full border-collapse border rounded-lg border-gray-200 bg-white text-sm shadow-md" data-test-id="user-list-table">
+  <table class="table-auto md:table-fixed min-w-full border-collapse border rounded-lg border-gray-200 bg-white text-sm shadow-md" data-test-id="user-list-table">
     <thead class="bg-gray-100">
       <tr data-test-id="user-list-header-row">
         @for (header of headers; track $index) {
-          <th class="border border-gray-200 px-4 py-2 text-left font-medium text-gray-600" [attr.data-test-id]="'user-list-header-' + header.toLowerCase()">
+          <th class="border border-gray-200 px-4 py-2 text-left font-semibold text-gray-600" [attr.data-test-id]="'user-list-header-' + header.toLowerCase()">
             {{ header }}
           </th>
         }
@@ -12,7 +12,7 @@
     @if (users.length) {
       <tbody data-test-id="user-list-body">
         @for (user of users; track user.id) {
-          <tr [attr.data-test-id]="'user-list-row-' + user.id">
+          <tr [attr.data-test-id]="'user-list-row-' + user.id" class="hover:bg-gray-100 transition-colors">
             <user-list-row-component
               [id]="user.id.toString()" 
               [name]="user.name" 
