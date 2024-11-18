@@ -1,0 +1,31 @@
+<div class="user-profile">
+  <h2 class="text-xl font-semibold text-gray-800">User Profile</h2>
+  
+  <div class="user-info">
+    <p><strong>Name:</strong> {{ user?.name }}</p>
+    <p><strong>Username:</strong> {{ user?.username }}</p>
+    <p><strong>Email:</strong> {{ user?.email }}</p>
+    <p><strong>Phone:</strong> {{ user?.phone }}</p>
+    <p><strong>Website:</strong> <a href="https://{{ user?.website }}" target="_blank" class="text-blue-500">{{ user?.website }}</a></p>
+  </div>
+
+  <div class="address">
+    <h3 class="font-semibold text-lg mt-4">Address</h3>
+    <p><strong>Street:</strong> {{ user?.address?.street }}</p>
+    <p><strong>Suite:</strong> {{ user?.address?.suite }}</p>
+    <p><strong>City:</strong> {{ user?.address?.city }}</p>
+    <p><strong>Zipcode:</strong> {{ user?.address?.zipcode }}</p>
+    <div class="geo-location">
+      <h4 class="font-medium text-md">Geolocation</h4>
+      <p><strong>Latitude:</strong> {{ user?.address?.geo?.lat }}</p>
+      <p><strong>Longitude:</strong> {{ user?.address?.geo?.lng }}</p>
+    </div>
+  </div>
+
+  <div class="company-info mt-4">
+    <h3 class="font-semibold text-lg">Company</h3>
+    <p><strong>Name:</strong> {{ user?.company?.name }}</p>
+    <p><strong>Catchphrase:</strong> {{ user?.company?.catchPhrase }}</p>
+    <p><strong>BS:</strong> {{ user?.company?.bs }}</p>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'user-list-row-component',
@@ -15,4 +15,10 @@ export class UserListRowComponent {
   @Input() email = "";
   @Input() website = "";
   @Input() id = "";
+
+  constructor(private router: Router) {}
+
+  navigateToUserDetails() {
+    this.router.navigate(['/user', this.id]);
+  }
 }
