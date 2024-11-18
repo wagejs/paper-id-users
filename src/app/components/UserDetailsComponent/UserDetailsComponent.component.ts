@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../../shared/types/users';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'user-details-component',
@@ -15,8 +16,9 @@ import { User } from '../../shared/types/users';
 export class UserDetailsComponent implements OnInit {
   id: string = '';
   user: User | null = null;
+  isLoading: boolean = true;
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) {}
+  constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router) {}
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -28,6 +30,11 @@ export class UserDetailsComponent implements OnInit {
   getUserDetails() {
     this.http.get<User>(`https://jsonplaceholder.typicode.com/users/${this.id}`).subscribe(user => {
       this.user = user;
+      this.isLoading = false;
     });
+  }
+
+  goBack() {
+    this.router.navigate(['/']);
   }
 }

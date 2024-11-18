@@ -1,31 +1,110 @@
-<div class="user-profile">
-  <h2 class="text-xl font-semibold text-gray-800">User Profile</h2>
-  
-  <div class="user-info">
-    <p><strong>Name:</strong> {{ user?.name }}</p>
-    <p><strong>Username:</strong> {{ user?.username }}</p>
-    <p><strong>Email:</strong> {{ user?.email }}</p>
-    <p><strong>Phone:</strong> {{ user?.phone }}</p>
-    <p><strong>Website:</strong> <a href="https://{{ user?.website }}" target="_blank" class="text-blue-500">{{ user?.website }}</a></p>
-  </div>
-
-  <div class="address">
-    <h3 class="font-semibold text-lg mt-4">Address</h3>
-    <p><strong>Street:</strong> {{ user?.address?.street }}</p>
-    <p><strong>Suite:</strong> {{ user?.address?.suite }}</p>
-    <p><strong>City:</strong> {{ user?.address?.city }}</p>
-    <p><strong>Zipcode:</strong> {{ user?.address?.zipcode }}</p>
-    <div class="geo-location">
-      <h4 class="font-medium text-md">Geolocation</h4>
-      <p><strong>Latitude:</strong> {{ user?.address?.geo?.lat }}</p>
-      <p><strong>Longitude:</strong> {{ user?.address?.geo?.lng }}</p>
+<div class="max-w-3xl mx-auto p-6">
+  <div class="bg-white rounded-lg shadow-lg p-8">
+    <div class="flex items-center justify-between mb-6 border-b pb-4">
+      <h2 class="text-2xl font-bold text-gray-800">User Details</h2>
+      <button (click)="goBack()" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-800 flex items-center gap-2 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+        </svg>
+        Back to Users
+      </button>
     </div>
-  </div>
+    
+    @if (isLoading) {
+      <div class="flex flex-col justify-center items-center h-48 space-y-4">
+        <div class="w-12 h-12 border-4 border-gray-200 border-t-blue-500 rounded-full animate-spin"></div>
+        <p class="text-gray-600 font-medium animate-pulse">Loading user details...</p>
+      </div>
+    }
+    @else {
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Personal Information -->
+        <div class="space-y-4">
+          <h3 class="text-lg font-semibold text-gray-700 mb-3">Personal Information</h3>
+          <div class="space-y-3">
+          <p class="flex items-center">
+            <span class="text-gray-600 w-24">Name:</span>
+            <span class="text-gray-800 font-medium">{{ user?.name }}</span>
+          </p>
+          <p class="flex items-center">
+            <span class="text-gray-600 w-24">Username:</span>
+            <span class="text-gray-800 font-medium">{{ user?.username }}</span>
+          </p>
+          <p class="flex items-center">
+            <span class="text-gray-600 w-24">Email:</span>
+            <span class="text-gray-800 font-medium">{{ user?.email }}</span>
+          </p>
+          <p class="flex items-center">
+            <span class="text-gray-600 w-24">Phone:</span>
+            <span class="text-gray-800 font-medium">{{ user?.phone }}</span>
+          </p>
+          <p class="flex items-center">
+            <span class="text-gray-600 w-24">Website:</span>
+            <a href="https://{{ user?.website }}" 
+               target="_blank" 
+               class="text-blue-600 hover:text-blue-800 font-medium transition-colors">
+              {{ user?.website }}
+            </a>
+          </p>
+          </div>
+        </div>
 
-  <div class="company-info mt-4">
-    <h3 class="font-semibold text-lg">Company</h3>
-    <p><strong>Name:</strong> {{ user?.company?.name }}</p>
-    <p><strong>Catchphrase:</strong> {{ user?.company?.catchPhrase }}</p>
-    <p><strong>BS:</strong> {{ user?.company?.bs }}</p>
+        <!-- Address Information -->
+      <div class="bg-gray-50 rounded-lg p-6">
+        <h3 class="text-lg font-semibold text-gray-700 mb-4">Address</h3>
+        <div class="space-y-3">
+          <p class="flex items-center">
+            <span class="text-gray-600 w-24">Street:</span>
+            <span class="text-gray-800 font-medium">{{ user?.address?.street }}</span>
+          </p>
+          <p class="flex items-center">
+            <span class="text-gray-600 w-24">Suite:</span>
+            <span class="text-gray-800 font-medium">{{ user?.address?.suite }}</span>
+          </p>
+          <p class="flex items-center">
+            <span class="text-gray-600 w-24">City:</span>
+            <span class="text-gray-800 font-medium">{{ user?.address?.city }}</span>
+          </p>
+          <p class="flex items-center">
+            <span class="text-gray-600 w-24">Zipcode:</span>
+            <span class="text-gray-800 font-medium">{{ user?.address?.zipcode }}</span>
+          </p>
+          
+          <div class="mt-4 pt-4 border-t border-gray-200">
+            <h4 class="text-md font-semibold text-gray-700 mb-3">Geolocation</h4>
+            <div class="space-y-2">
+              <p class="flex items-center">
+                <span class="text-gray-600 w-24">Latitude:</span>
+                <span class="text-gray-800 font-medium">{{ user?.address?.geo?.lat }}</span>
+              </p>
+              <p class="flex items-center">
+                <span class="text-gray-600 w-24">Longitude:</span>
+                <span class="text-gray-800 font-medium">{{ user?.address?.geo?.lng }}</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Company Information -->
+      <div class="md:col-span-2 bg-gray-50 rounded-lg p-6 mt-4">
+        <h3 class="text-lg font-semibold text-gray-700 mb-4">Company</h3>
+        <div class="space-y-3">
+          <p class="flex items-center">
+            <span class="text-gray-600 w-24">Name:</span>
+            <span class="text-gray-800 font-medium">{{ user?.company?.name }}</span>
+          </p>
+          <p class="flex items-center">
+            <span class="text-gray-600 w-24">Catchphrase:</span>
+            <span class="text-gray-800 font-medium italic">{{ user?.company?.catchPhrase }}</span>
+          </p>
+          <p class="flex items-center">
+            <span class="text-gray-600 w-24">BS:</span>
+            <span class="text-gray-800 font-medium">{{ user?.company?.bs }}</span>
+          </p>
+        </div>
+      </div>
+      </div>
+    }
   </div>
 </div>
