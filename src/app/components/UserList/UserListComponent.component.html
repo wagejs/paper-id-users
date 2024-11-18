@@ -1,3 +1,27 @@
-<div class="bg-primary text-white text-center p-4">
-  User List Components
+<div class="overflow-x-auto">
+  <table class="min-w-full border-collapse border rounded-lg border-gray-200 bg-white text-sm shadow-md">
+    <thead class="bg-gray-100">
+      <tr>
+        @for (header of headers; track $index) {
+          <th class="border border-gray-200 px-4 py-2 text-left font-medium text-gray-600">
+            {{ header }}
+          </th>
+        }
+      </tr>
+    </thead>
+    @if (users.length) {
+      <tbody>
+        @for (user of users; track user.id) {
+          <tr>
+            <user-list-row-component
+              [id]="user.id.toString()" 
+              [name]="user.name" 
+              [email]="user.email" 
+              [website]="user.website">
+            </user-list-row-component>
+          </tr>
+        }
+      </tbody>
+    }
+  </table>
 </div>

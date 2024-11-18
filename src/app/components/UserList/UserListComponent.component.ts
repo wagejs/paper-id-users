@@ -1,15 +1,43 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { UserListRowComponent } from '../UserListRowComponent/UserListRowComponent.component'
+import { HttpClient } from '@angular/common/http';
+import { User } from '../../shared/types/users';
 
 @Component({
   selector: 'user-list-component',
   standalone: true,
   imports: [
-    // RouterOutlet
+    UserListRowComponent
   ],
   templateUrl: './UserListComponent.component.html',
-  styleUrl: './UserListComponent.component.scss'
 })
 export class UserListComponent {
+  headers: string[] = [
+    'ID',
+    'Name',
+    'Email',
+    'Website',
+    'Actions'
+  ]
+  users: User[] = [];
 
+  constructor(private http: HttpClient) {
+    this.getUsers();
+  }
+
+  getUsers() {
+    this.http.get<User[]>('https://jsonplaceholder.typicode.com/users')
+      .subscribe({
+        next: (response) => {
+          this.users = response;
+        },
+        error: (error) => {
+          console.error('Error fetching users:', error);
+        }
+      });
+  }
+
+  trackByUserId(index: number, user: any): number {
+    return user.id; // Use a unique identifier for each user
+  }
 }
