@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import { User } from '../../shared/types/users';
+import { UserService } from '../../services/user/user.service';
+import { User } from '../../shared/models/user.model';
 import { Router } from '@angular/router';
 
 @Component({
@@ -18,7 +18,7 @@ export class UserDetailsComponent implements OnInit {
   user: User | null = null;
   isLoading: boolean = true;
 
-  constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router) {}
+  constructor(private route: ActivatedRoute, private userService: UserService, private router: Router) {}
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -28,7 +28,7 @@ export class UserDetailsComponent implements OnInit {
   }
 
   getUserDetails() {
-    this.http.get<User>(`https://jsonplaceholder.typicode.com/users/${this.id}`).subscribe(user => {
+    this.userService.getUserById(parseInt(this.id)).subscribe(user => {
       this.user = user;
       this.isLoading = false;
     });

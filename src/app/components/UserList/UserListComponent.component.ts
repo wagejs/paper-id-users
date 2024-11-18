@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { UserListRowComponent } from '../UserListRowComponent/UserListRowComponent.component'
-import { HttpClient } from '@angular/common/http';
-import { User } from '../../shared/types/users';
+import { UserService } from '../../services/user/user.service';
+import { User } from '../../shared/models/user.model';
 
 @Component({
   selector: 'user-list-component',
@@ -21,12 +21,12 @@ export class UserListComponent {
   ]
   users: User[] = [];
 
-  constructor(private http: HttpClient) {
+  constructor(private userService: UserService) {
     this.getUsers();
   }
 
   getUsers() {
-    this.http.get<User[]>('https://jsonplaceholder.typicode.com/users')
+    this.userService.getUsers()
       .subscribe({
         next: (response) => {
           this.users = response;
